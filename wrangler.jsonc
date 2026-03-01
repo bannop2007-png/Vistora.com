@@ -2,17 +2,53 @@ export default {
     async fetch(request, env) {
         const url = new URL(request.url);
         
-        // Проверка базы
+        // Проверка базы данных
         if (url.pathname === "/check-db") {
-            return new Response(JSON.stringify({
-                hasDB: !!env.DB,
-                message: env.DB ? "✅ База есть!" : "❌ Базы нет"
-            }), {
-                headers: { "Content-Type": "application/json" }
-            });
+            try {
+                // Пробуем создать таблицу для теста
+                await env.DB.exec(`
+                    CREATE TABLE IF NOT EXISTS test (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        message TEXT
+                    )
+                `);
+                
+                // Добавляем запись
+                await env.DB.prepare(
+                    "INSERT INTO test (message) VALUES (?)"
+                ).bind("Привет из базы!").run();
+                
+                // Читаем все записи
+                const { results } = await env.DB.prepare(
+                    "SELECT * FROM test"
+                ).all();
+                
+                return new Response(JSON.stringify({
+                    success: true,
+                    hasDB: true,
+                    message: "✅ База работает!",
+                    data: results
+                }), {
+                    headers: { "Content-Type": "application/json" }
+                });
+                
+            } catch (error) {
+                return new Response(JSON.stringify({
+                    success: false,
+                    hasDB: false,
+                    message: "❌ Ошибка: " + error.message
+                }), {
+                    headers: { "Content-Type": "application/json" }
+                });
+            }
         }
         
-        // Если зашли на главную
-        return new Response("Vistora API работает. Используй /check-db");
+        // Главная страница
+        return new Response(JSON.stringify({
+            status: "Vistora API работает",
+            check: "Используй /check-db для проверки базы"
+        }), {
+            headers: { "Content-Type": "application/json" }
+        });
     }
 };
