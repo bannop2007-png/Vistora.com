@@ -2,389 +2,409 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Видео — Vistora</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Vistora — твой видеохостинг</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        .video-page {
-            max-width: 1400px;
-            margin: 80px auto 0;
-            padding: 20px;
-        }
-        .video-player-container {
-            position: relative;
-            width: 100%;
-            padding-top: 56.25%;
-            background: black;
-            border-radius: 16px;
-            overflow: hidden;
-            margin-bottom: 20px;
-            box-shadow: var(--shadow);
-        }
-        .video-player-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-        .video-title-section {
-            margin-bottom: 20px;
-        }
-        .video-title-section h1 {
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-        .video-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            padding: 15px 0;
-            border-bottom: 1px solid var(--border-color);
-        }
-        .channel-info {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        .channel-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            overflow: hidden;
-        }
-        .channel-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .channel-details h3 {
-            margin-bottom: 5px;
-        }
-        .subscribe-btn {
-            padding: 10px 20px;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.2s;
-        }
-        .subscribe-btn:hover {
-            background: var(--primary-dark);
-            transform: scale(1.05);
-        }
-        .action-buttons {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-        .action-btn {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 20px;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            color: var(--text-primary);
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .action-btn:hover {
-            background: var(--bg-hover);
-        }
-        .action-btn.liked {
-            color: var(--secondary);
-            border-color: var(--secondary);
-        }
-        .video-description {
-            background: var(--bg-card);
-            padding: 20px;
-            border-radius: 12px;
-            margin: 20px 0;
-            border: 1px solid var(--border-color);
-        }
-        .comments-section {
-            margin-top: 30px;
-        }
-        .comment-form {
-            display: flex;
-            gap: 15px;
-            margin: 20px 0;
-        }
-        .comment-form input {
-            flex: 1;
-            padding: 12px 20px;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 25px;
-            color: var(--text-primary);
-        }
-        .comment-form button {
-            padding: 12px 25px;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-        }
-        .comment {
-            display: flex;
-            gap: 15px;
-            margin: 15px 0;
-            padding: 15px;
-            background: var(--bg-card);
-            border-radius: 12px;
-        }
-        .comment-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-        .comment-content {
-            flex: 1;
-        }
-        .comment-content strong {
-            display: block;
-            margin-bottom: 5px;
-        }
-        .comment-content small {
-            color: var(--text-secondary);
-        }
-        .recommendations {
-            margin-top: 40px;
-        }
-        .recommendations h3 {
-            margin-bottom: 20px;
-        }
-    </style>
 </head>
 <body>
     <header class="header">
         <div class="header-left">
-            <button class="menu-btn" id="menuToggle"><i class="fas fa-bars"></i></button>
-            <a href="index.html" class="logo"><i class="fas fa-play-circle"></i><span>Vistora</span></a>
+            <button class="menu-btn" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <a href="index.html" class="logo">
+                <i class="fas fa-play-circle"></i>
+                <span>Vistora</span>
+            </a>
         </div>
+        
         <div class="search-container">
             <form class="search-form" id="searchForm">
-                <input type="text" placeholder="Поиск" id="searchInput">
+                <input type="text" placeholder="Поиск видео..." id="searchInput">
                 <button type="submit"><i class="fas fa-search"></i></button>
             </form>
         </div>
+        
         <div class="header-right">
-            <button class="create-btn" onclick="location.href='upload.html'"><i class="fas fa-video"></i><span>Создать</span></button>
-            <div class="user-avatar" onclick="location.href='profile.html'"><img src="https://via.placeholder.com/32" alt="User"></div>
+            <button class="create-btn" onclick="location.href='upload.html'">
+                <i class="fas fa-video"></i>
+                <span>Создать</span>
+            </button>
+            <div class="user-avatar" id="userAvatar" onclick="location.href='profile.html'">
+                <img src="https://via.placeholder.com/32" alt="User">
+            </div>
         </div>
     </header>
 
-    <div class="video-page">
-        <div class="video-player-container" id="videoPlayer"></div>
-        
-        <div class="video-title-section">
-            <h1 id="videoTitle">Загрузка...</h1>
-            
-            <div class="video-meta">
-                <div class="channel-info">
-                    <div class="channel-avatar">
-                        <img src="" alt="" id="channelAvatar">
-                    </div>
-                    <div class="channel-details">
-                        <h3 id="channelName">Канал</h3>
-                        <span id="videoStats">0 просмотров • сегодня</span>
-                    </div>
-                    <button class="subscribe-btn" onclick="subscribe()">
-                        <i class="fas fa-bell"></i> Подписаться
-                    </button>
+    <div class="app-container">
+        <!-- Боковое меню (теперь оно правильное) -->
+        <aside class="sidebar" id="sidebar">
+            <nav class="sidebar-nav">
+                <a href="index.html" class="nav-item active">
+                    <i class="fas fa-home"></i>
+                    <span>Главная</span>
+                </a>
+                <a href="trending.html" class="nav-item">
+                    <i class="fas fa-fire"></i>
+                    <span>В тренде</span>
+                </a>
+                <a href="subscriptions.html" class="nav-item">
+                    <i class="fas fa-bell"></i>
+                    <span>Подписки</span>
+                </a>
+                <hr class="sidebar-divider">
+                <a href="library.html" class="nav-item">
+                    <i class="fas fa-folder"></i>
+                    <span>Библиотека</span>
+                </a>
+                <a href="history.html" class="nav-item">
+                    <i class="fas fa-history"></i>
+                    <span>История</span>
+                </a>
+                <hr class="sidebar-divider">
+                <div class="sidebar-section">
+                    <h4>Подписки</h4>
+                    <a href="#" class="nav-item">
+                        <img src="https://via.placeholder.com/24" class="channel-icon">
+                        <span>TechMaster</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <img src="https://via.placeholder.com/24" class="channel-icon">
+                        <span>GamePro</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <img src="https://via.placeholder.com/24" class="channel-icon">
+                        <span>Music Zone</span>
+                    </a>
                 </div>
-                
-                <div class="action-buttons">
-                    <button class="action-btn" onclick="likeVideo()">
-                        <i class="fas fa-thumbs-up"></i>
-                        <span id="likesCount">0</span>
-                    </button>
-                    <button class="action-btn" onclick="dislikeVideo()">
-                        <i class="fas fa-thumbs-down"></i>
-                        <span id="dislikesCount">0</span>
-                    </button>
-                    <button class="action-btn" onclick="shareVideo()">
-                        <i class="fas fa-share"></i> Поделиться
-                    </button>
-                    <button class="action-btn" onclick="saveVideo()">
-                        <i class="fas fa-bookmark"></i> Сохранить
-                    </button>
+            </nav>
+        </aside>
+
+        <main class="main-content" id="mainContent">
+            <!-- Фильтры -->
+            <div class="filters-wrapper">
+                <div class="filters-bar" id="filtersBar">
+                    <button class="filter-chip active" data-category="all">Все</button>
+                    <button class="filter-chip" data-category="tech">Технологии</button>
+                    <button class="filter-chip" data-category="music">Музыка</button>
+                    <button class="filter-chip" data-category="games">Игры</button>
+                    <button class="filter-chip" data-category="news">Новости</button>
+                    <button class="filter-chip" data-category="sport">Спорт</button>
+                    <button class="filter-chip" data-category="movies">Фильмы</button>
+                    <button class="filter-chip" data-category="education">Обучение</button>
                 </div>
             </div>
-        </div>
 
-        <div class="video-description" id="videoDescription"></div>
-
-        <div class="comments-section">
-            <h3>Комментарии <span id="commentsCount">0</span></h3>
-            
-            <div class="comment-form">
-                <img src="https://via.placeholder.com/40" class="comment-avatar" id="currentUserAvatar">
-                <input type="text" placeholder="Написать комментарий..." id="commentInput">
-                <button onclick="addComment()">Отправить</button>
+            <!-- Сортировка -->
+            <div class="sort-section">
+                <span class="sort-label">Сортировать:</span>
+                <div class="sort-buttons">
+                    <button class="sort-btn active" data-sort="date">Новизне</button>
+                    <button class="sort-btn" data-sort="views">Просмотрам</button>
+                    <button class="sort-btn" data-sort="rating">Рейтингу</button>
+                </div>
             </div>
-            
-            <div id="commentsList"></div>
-        </div>
 
-        <div class="recommendations">
-            <h3>Рекомендации</h3>
-            <div class="videos-grid" id="recommendations"></div>
-        </div>
+            <!-- Сетка видео -->
+            <div class="videos-grid" id="videosGrid"></div>
+
+            <!-- Кнопка загрузить ещё -->
+            <div class="load-more-wrapper">
+                <button class="load-more-btn" id="loadMoreBtn">
+                    <i class="fas fa-sync-alt"></i>
+                    <span>Загрузить ещё</span>
+                </button>
+            </div>
+        </main>
     </div>
 
-    <script src="script.js"></script>
     <script>
-        let currentVideo = null;
-        let videoComments = [];
+        const API_URL = 'https://vistora-api.islamov2007islam.workers.dev';
+        let videos = [];
+        let currentFilter = 'all';
+        let currentSort = 'date';
+        let displayedVideos = 8;
+        let currentUser = null;
+
+        // Тестовые видео с реальными YouTube-ссылками
+        const DEMO_VIDEOS = [
+            {
+                id: 1,
+                title: "iPhone 15 Pro Max — Полный обзор",
+                channel: "TechMaster",
+                channelIcon: "https://via.placeholder.com/24/ff0000",
+                views: "1.2M",
+                date: "2025-02-15",
+                duration: "12:34",
+                thumbnail: "https://img.youtube.com/vi/0pI5jvY4Tgs/maxresdefault.jpg",
+                category: "tech",
+                videoUrl: "https://www.youtube.com/embed/0pI5jvY4Tgs"
+            },
+            {
+                id: 2,
+                title: "CS2 — Гайд для новичков 2025",
+                channel: "GamePro",
+                channelIcon: "https://via.placeholder.com/24/00ff00",
+                views: "890K",
+                date: "2025-02-14",
+                duration: "25:10",
+                thumbnail: "https://img.youtube.com/vi/edYCtaNueQY/maxresdefault.jpg",
+                category: "games",
+                videoUrl: "https://www.youtube.com/embed/edYCtaNueQY"
+            },
+            {
+                id: 3,
+                title: "MORGENSHTERN — Новый трек (Премьера)",
+                channel: "Music Zone",
+                channelIcon: "https://via.placeholder.com/24/0000ff",
+                views: "3.4M",
+                date: "2025-02-10",
+                duration: "3:45",
+                thumbnail: "https://img.youtube.com/vi/q9sVKVSzI_M/maxresdefault.jpg",
+                category: "music",
+                videoUrl: "https://www.youtube.com/embed/q9sVKVSzI_M"
+            },
+            {
+                id: 4,
+                title: "Зенит — Спартак: Обзор матча",
+                channel: "Sport TV",
+                channelIcon: "https://via.placeholder.com/24/ffff00",
+                views: "2.1M",
+                date: "2025-02-08",
+                duration: "15:45",
+                thumbnail: "https://img.youtube.com/vi/RvEzj-ZvH-c/maxresdefault.jpg",
+                category: "sport",
+                videoUrl: "https://www.youtube.com/embed/RvEzj-ZvH-c"
+            },
+            {
+                id: 5,
+                title: "Дюна 2 — Обзор без спойлеров",
+                channel: "CinemaTime",
+                channelIcon: "https://via.placeholder.com/24/ff00ff",
+                views: "4.5M",
+                date: "2025-02-05",
+                duration: "22:18",
+                thumbnail: "https://img.youtube.com/vi/WAY7wj6Ee0c/maxresdefault.jpg",
+                category: "movies",
+                videoUrl: "https://www.youtube.com/embed/WAY7wj6Ee0c"
+            },
+            {
+                id: 6,
+                title: "Главные новости за неделю",
+                channel: "News24",
+                channelIcon: "https://via.placeholder.com/24/00ffff",
+                views: "1.1M",
+                date: "2025-02-12",
+                duration: "45:30",
+                thumbnail: "https://img.youtube.com/vi/5_PD_5zZ7nU/maxresdefault.jpg",
+                category: "news",
+                videoUrl: "https://www.youtube.com/embed/5_PD_5zZ7nU"
+            },
+            {
+                id: 7,
+                title: "Как выучить английский за месяц",
+                channel: "EduHub",
+                channelIcon: "https://via.placeholder.com/24/ff8800",
+                views: "780K",
+                date: "2025-02-03",
+                duration: "18:20",
+                thumbnail: "https://img.youtube.com/vi/6Lq3mPbvB2I/maxresdefault.jpg",
+                category: "education",
+                videoUrl: "https://www.youtube.com/embed/6Lq3mPbvB2I"
+            },
+            {
+                id: 8,
+                title: "Tesla Cybertruck — Тест-драйв",
+                channel: "AutoWorld",
+                channelIcon: "https://via.placeholder.com/24/ff4444",
+                views: "5.2M",
+                date: "2025-01-28",
+                duration: "32:15",
+                thumbnail: "https://img.youtube.com/vi/7tw0X9Dl7eQ/maxresdefault.jpg",
+                category: "tech",
+                videoUrl: "https://www.youtube.com/embed/7tw0X9Dl7eQ"
+            }
+        ];
 
         document.addEventListener('DOMContentLoaded', async () => {
-            const urlParams = new URLSearchParams(window.location.search);
-            const videoId = urlParams.get('id');
-            
-            if (!videoId) {
-                window.location.href = 'index.html';
-                return;
-            }
-
-            await loadVideo(videoId);
-            await loadComments(videoId);
-            await loadRecommendations(currentVideo?.category, videoId);
+            await loadUser();
+            await loadVideos();
+            setupEventListeners();
+            checkMenuState();
         });
 
-        async function loadVideo(videoId) {
-            try {
-                const res = await fetch(`${API_URL}/api/videos/${videoId}`);
-                if (res.ok) {
-                    currentVideo = await res.json();
-                } else {
-                    // Берём из демо если нет в базе
-                    const demos = getDemoVideos();
-                    currentVideo = demos.find(v => v.id == videoId) || demos[0];
+        async function loadUser() {
+            const token = localStorage.getItem('token');
+            if (token) {
+                try {
+                    const response = await fetch(`${API_URL}/api/user`, {
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    });
+                    if (response.ok) {
+                        currentUser = await response.json();
+                        updateUserAvatar();
+                    }
+                } catch (error) {
+                    console.error('Ошибка загрузки пользователя:', error);
                 }
-            } catch {
-                const demos = getDemoVideos();
-                currentVideo = demos.find(v => v.id == videoId) || demos[0];
-            }
-
-            if (!currentVideo) {
-                window.location.href = 'index.html';
-                return;
-            }
-
-            displayVideo();
-            trackView(videoId);
-        }
-
-        function displayVideo() {
-            document.getElementById('videoTitle').textContent = currentVideo.title;
-            document.getElementById('channelName').textContent = currentVideo.channel;
-            document.getElementById('channelAvatar').src = currentVideo.channelIcon || 'https://via.placeholder.com/50';
-            document.getElementById('videoStats').textContent = `${currentVideo.views} просмотров • ${formatDate(currentVideo.date)}`;
-            document.getElementById('videoDescription').textContent = currentVideo.description || 'Описание отсутствует';
-            
-            // Встраиваем YouTube видео
-            let videoUrl = currentVideo.videoUrl || `https://www.youtube.com/embed/${currentVideo.id}`;
-            if (videoUrl.includes('youtu.be')) {
-                const id = videoUrl.split('/').pop();
-                videoUrl = `https://www.youtube.com/embed/${id}`;
-            }
-            
-            document.getElementById('videoPlayer').innerHTML = `
-                <iframe src="${videoUrl}" frameborder="0" allowfullscreen></iframe>
-            `;
-        }
-
-        async function loadComments(videoId) {
-            videoComments = await loadComments(videoId);
-            displayComments(videoComments);
-            document.getElementById('commentsCount').textContent = videoComments.length;
-        }
-
-        async function addComment() {
-            if (!currentUser) {
-                alert('Войдите, чтобы комментировать');
-                window.location.href = 'login.html';
-                return;
-            }
-
-            const input = document.getElementById('commentInput');
-            const text = input.value.trim();
-            if (!text) return;
-
-            const success = await addComment(currentVideo.id, text);
-            if (success) {
-                input.value = '';
-                await loadComments(currentVideo.id);
             }
         }
 
-        async function loadRecommendations(category, currentId) {
-            const all = await loadVideos();
-            const recommended = all
-                .filter(v => v.category === category && v.id != currentId)
-                .slice(0, 4);
-            
-            displayVideos(recommended, 'recommendations');
+        function updateUserAvatar() {
+            const avatar = document.querySelector('.user-avatar img');
+            if (avatar && currentUser?.avatar) {
+                avatar.src = currentUser.avatar;
+            }
         }
 
-        async function likeVideo() {
-            if (!currentUser) {
-                alert('Войдите, чтобы ставить лайки');
-                return;
-            }
-
+        async function loadVideos() {
             try {
-                const res = await fetch(`${API_URL}/api/videos/${currentVideo.id}/like`, {
-                    method: 'POST',
-                    headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
-                });
-                if (res.ok) {
-                    const count = document.getElementById('likesCount');
-                    count.textContent = parseInt(count.textContent) + 1;
+                const response = await fetch(`${API_URL}/api/videos`);
+                if (response.ok) {
+                    videos = await response.json();
+                    if (videos.length === 0) videos = DEMO_VIDEOS;
+                } else {
+                    videos = DEMO_VIDEOS;
                 }
             } catch (error) {
-                console.error('Ошибка лайка:', error);
+                console.warn('Использую тестовые видео');
+                videos = DEMO_VIDEOS;
+            }
+            displayVideos();
+        }
+
+        function displayVideos() {
+            const grid = document.getElementById('videosGrid');
+            if (!grid) return;
+
+            let filteredVideos = [...videos];
+            if (currentFilter !== 'all') {
+                filteredVideos = filteredVideos.filter(v => v.category === currentFilter);
+            }
+
+            filteredVideos.sort((a, b) => {
+                switch(currentSort) {
+                    case 'date':
+                        return new Date(b.date) - new Date(a.date);
+                    case 'views':
+                        const viewsA = parseInt(a.views) || 0;
+                        const viewsB = parseInt(b.views) || 0;
+                        return viewsB - viewsA;
+                    default:
+                        return 0;
+                }
+            });
+
+            const videosToShow = filteredVideos.slice(0, displayedVideos);
+            
+            grid.innerHTML = videosToShow.map(video => `
+                <a href="video.html?id=${video.id}" class="video-card">
+                    <div class="video-thumbnail">
+                        <img src="${video.thumbnail}" alt="${video.title}" loading="lazy">
+                        <span class="video-duration">${video.duration}</span>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-channel-icon">
+                            <img src="${video.channelIcon || 'https://via.placeholder.com/36'}" alt="">
+                        </div>
+                        <div class="video-details">
+                            <h3 class="video-title">${video.title}</h3>
+                            <div class="video-channel">${video.channel}</div>
+                            <div class="video-stats">
+                                <span>${video.views} просмотров</span>
+                                <span class="separator">•</span>
+                                <span>${formatDate(video.date)}</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            `).join('');
+
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+            if (loadMoreBtn) {
+                loadMoreBtn.style.display = displayedVideos >= filteredVideos.length ? 'none' : 'flex';
             }
         }
 
-        async function trackView(videoId) {
-            try {
-                await fetch(`${API_URL}/api/videos/${videoId}/view`, {
-                    method: 'POST'
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const now = new Date();
+            const diffTime = Math.abs(now - date);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            
+            if (diffDays === 0) return 'сегодня';
+            if (diffDays === 1) return 'вчера';
+            if (diffDays < 7) return `${diffDays} дня назад`;
+            return date.toLocaleDateString('ru-RU');
+        }
+
+        function setupEventListeners() {
+            // Фильтры
+            document.querySelectorAll('.filter-chip').forEach(chip => {
+                chip.addEventListener('click', (e) => {
+                    document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+                    e.target.classList.add('active');
+                    currentFilter = e.target.dataset.category;
+                    displayedVideos = 8;
+                    displayVideos();
                 });
-            } catch {}
-        }
+            });
 
-        function shareVideo() {
-            navigator.clipboard.writeText(window.location.href);
-            alert('Ссылка скопирована!');
-        }
+            // Сортировка
+            document.querySelectorAll('.sort-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
+                    e.target.classList.add('active');
+                    currentSort = e.target.dataset.sort;
+                    displayVideos();
+                });
+            });
 
-        function saveVideo() {
-            if (!currentUser) {
-                alert('Войдите, чтобы сохранять видео');
-                return;
+            // Кнопка загрузить ещё
+            document.getElementById('loadMoreBtn')?.addEventListener('click', () => {
+                displayedVideos += 4;
+                displayVideos();
+            });
+
+            // Меню (бургер)
+            const menuToggle = document.getElementById('menuToggle');
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.getElementById('mainContent');
+
+            if (menuToggle && sidebar) {
+                menuToggle.addEventListener('click', () => {
+                    sidebar.classList.toggle('closed');
+                    if (window.innerWidth <= 1024) {
+                        sidebar.classList.toggle('mobile-open');
+                    }
+                });
             }
-            alert('Добавлено в сохранённые');
+
+            // Поиск
+            document.getElementById('searchForm')?.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const query = document.getElementById('searchInput').value.trim();
+                if (query) {
+                    window.location.href = `search.html?q=${encodeURIComponent(query)}`;
+                }
+            });
+
+            // Адаптация при ресайзе
+            window.addEventListener('resize', () => {
+                checkMenuState();
+            });
         }
 
-        function subscribe() {
-            if (!currentUser) {
-                alert('Войдите, чтобы подписываться');
-                return;
+        function checkMenuState() {
+            const sidebar = document.getElementById('sidebar');
+            if (!sidebar) return;
+            
+            if (window.innerWidth <= 1024) {
+                sidebar.classList.add('closed');
+            } else {
+                sidebar.classList.remove('closed', 'mobile-open');
             }
-            alert('Вы подписались на канал!');
         }
     </script>
 </body>
