@@ -3,13 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vistora — Видеохостинг для России</title>
+    <title>Vistora — Видеохостинг</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <!-- Шапка сайта -->
     <header class="header">
         <div class="header-left">
             <button class="menu-btn" id="menuToggle">
@@ -17,7 +15,7 @@
             </button>
             <a href="index.html" class="logo">
                 <i class="fas fa-play-circle"></i>
-                Vistora
+                <span>Vistora</span>
             </a>
         </div>
         
@@ -26,26 +24,20 @@
                 <input type="text" placeholder="Поиск на Vistora" id="searchInput">
                 <button type="submit"><i class="fas fa-search"></i></button>
             </form>
-            <button class="mic-btn"><i class="fas fa-microphone"></i></button>
         </div>
         
         <div class="header-right">
-            <button class="create-btn">
+            <button class="create-btn" onclick="location.href='upload.html'">
                 <i class="fas fa-video"></i>
                 <span>Создать</span>
             </button>
-            <button class="notifications-btn">
-                <i class="fas fa-bell"></i>
-            </button>
-            <div class="user-avatar" id="userAvatar">
+            <div class="user-avatar" id="userAvatar" onclick="location.href='profile.html'">
                 <img src="https://via.placeholder.com/32" alt="User">
             </div>
         </div>
     </header>
 
-    <!-- Основной контейнер -->
     <div class="app-container">
-        <!-- Боковое меню -->
         <aside class="sidebar" id="sidebar">
             <nav class="sidebar-nav">
                 <a href="index.html" class="nav-item active">
@@ -67,54 +59,22 @@
                 </a>
                 <a href="history.html" class="nav-item">
                     <i class="fas fa-history"></i>
-                    <span>История</a>
+                    <span>История</span>
                 </a>
-                <hr class="sidebar-divider">
-                <div class="sidebar-section">
-                    <h4>Категории</h4>
-                    <a href="#" class="nav-item" data-category="tech">
-                        <i class="fas fa-laptop"></i>
-                        <span>Технологии</span>
-                    </a>
-                    <a href="#" class="nav-item" data-category="music">
-                        <i class="fas fa-music"></i>
-                        <span>Музыка</span>
-                    </a>
-                    <a href="#" class="nav-item" data-category="games">
-                        <i class="fas fa-gamepad"></i>
-                        <span>Игры</span>
-                    </a>
-                    <a href="#" class="nav-item" data-category="news">
-                        <i class="fas fa-newspaper"></i>
-                        <span>Новости</span>
-                    </a>
-                    <a href="#" class="nav-item" data-category="sport">
-                        <i class="fas fa-futbol"></i>
-                        <span>Спорт</span>
-                    </a>
-                    <a href="#" class="nav-item" data-category="movies">
-                        <i class="fas fa-film"></i>
-                        <span>Фильмы</span>
-                    </a>
-                </div>
             </nav>
         </aside>
 
-        <!-- Основной контент -->
         <main class="main-content">
-            <!-- Быстрые фильтры -->
-            <div class="filters-bar">
-                <button class="filter-chip active">Все</button>
-                <button class="filter-chip">Технологии</button>
-                <button class="filter-chip">Музыка</button>
-                <button class="filter-chip">Игры</button>
-                <button class="filter-chip">Новости</button>
-                <button class="filter-chip">Спорт</button>
-                <button class="filter-chip">Фильмы</button>
-                <button class="filter-chip">Обучение</button>
+            <div class="filters-bar" id="filtersBar">
+                <button class="filter-chip active" data-category="all">Все</button>
+                <button class="filter-chip" data-category="tech">Технологии</button>
+                <button class="filter-chip" data-category="music">Музыка</button>
+                <button class="filter-chip" data-category="games">Игры</button>
+                <button class="filter-chip" data-category="news">Новости</button>
+                <button class="filter-chip" data-category="sport">Спорт</button>
+                <button class="filter-chip" data-category="movies">Фильмы</button>
             </div>
 
-            <!-- Сортировка -->
             <div class="sort-section">
                 <span>Сортировать по:</span>
                 <button class="sort-btn active" data-sort="date">Новизне</button>
@@ -122,15 +82,10 @@
                 <button class="sort-btn" data-sort="rating">Рейтингу</button>
             </div>
 
-            <!-- Сетка видео -->
-            <div class="videos-grid" id="videosGrid">
-                <!-- Видео будут загружаться через JavaScript -->
-            </div>
+            <div class="videos-grid" id="videosGrid"></div>
 
-            <!-- Кнопка загрузить ещё -->
             <button class="load-more-btn" id="loadMoreBtn">
-                <i class="fas fa-sync-alt"></i>
-                Загрузить ещё
+                <i class="fas fa-sync-alt"></i> Загрузить ещё
             </button>
         </main>
     </div>
