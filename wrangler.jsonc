@@ -1,0 +1,12 @@
+{
+  "name": "vistora-api",
+  "compatibility_date": "2025-09-27",
+  "main": "src/index.js",
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "vistora-db",
+      "database_id": "твой-id-базы"
+    }
+  ]
+}
