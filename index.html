@@ -2,61 +2,120 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vistora — Видеохостинг</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Vistora — твой видеохостинг</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <header class="header">
         <div class="header-left">
-            <button class="menu-btn" id="menuToggle"><i class="fas fa-bars"></i></button>
-            <a href="index.html" class="logo"><i class="fas fa-play-circle"></i><span>Vistora</span></a>
+            <button class="menu-btn" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <a href="index.html" class="logo">
+                <i class="fas fa-play-circle"></i>
+                <span>Vistora</span>
+            </a>
         </div>
+        
         <div class="search-container">
             <form class="search-form" id="searchForm">
-                <input type="text" placeholder="Поиск на Vistora" id="searchInput">
+                <input type="text" placeholder="Поиск видео..." id="searchInput">
                 <button type="submit"><i class="fas fa-search"></i></button>
             </form>
         </div>
+        
         <div class="header-right">
-            <button class="create-btn" onclick="location.href='upload.html'"><i class="fas fa-video"></i><span>Создать</span></button>
-            <div class="user-avatar" id="userAvatar" onclick="location.href='profile.html'"><img src="https://via.placeholder.com/32" alt="User"></div>
+            <button class="create-btn" onclick="location.href='upload.html'">
+                <i class="fas fa-video"></i>
+                <span>Создать</span>
+            </button>
+            <div class="user-avatar" id="userAvatar" onclick="location.href='profile.html'">
+                <img src="https://via.placeholder.com/32" alt="User">
+            </div>
         </div>
     </header>
 
     <div class="app-container">
+        <!-- Боковое меню (теперь оно правильное) -->
         <aside class="sidebar" id="sidebar">
             <nav class="sidebar-nav">
-                <a href="index.html" class="nav-item active"><i class="fas fa-home"></i><span>Главная</span></a>
-                <a href="trending.html" class="nav-item"><i class="fas fa-fire"></i><span>В тренде</span></a>
-                <a href="subscriptions.html" class="nav-item"><i class="fas fa-bell"></i><span>Подписки</span></a>
+                <a href="index.html" class="nav-item active">
+                    <i class="fas fa-home"></i>
+                    <span>Главная</span>
+                </a>
+                <a href="trending.html" class="nav-item">
+                    <i class="fas fa-fire"></i>
+                    <span>В тренде</span>
+                </a>
+                <a href="subscriptions.html" class="nav-item">
+                    <i class="fas fa-bell"></i>
+                    <span>Подписки</span>
+                </a>
                 <hr class="sidebar-divider">
-                <a href="library.html" class="nav-item"><i class="fas fa-folder"></i><span>Библиотека</span></a>
-                <a href="history.html" class="nav-item"><i class="fas fa-history"></i><span>История</span></a>
+                <a href="library.html" class="nav-item">
+                    <i class="fas fa-folder"></i>
+                    <span>Библиотека</span>
+                </a>
+                <a href="history.html" class="nav-item">
+                    <i class="fas fa-history"></i>
+                    <span>История</span>
+                </a>
+                <hr class="sidebar-divider">
+                <div class="sidebar-section">
+                    <h4>Подписки</h4>
+                    <a href="#" class="nav-item">
+                        <img src="https://via.placeholder.com/24" class="channel-icon">
+                        <span>TechMaster</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <img src="https://via.placeholder.com/24" class="channel-icon">
+                        <span>GamePro</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <img src="https://via.placeholder.com/24" class="channel-icon">
+                        <span>Music Zone</span>
+                    </a>
+                </div>
             </nav>
         </aside>
 
-        <main class="main-content">
-            <div class="filters-bar" id="filtersBar">
-                <button class="filter-chip active" data-category="all">Все</button>
-                <button class="filter-chip" data-category="tech">Технологии</button>
-                <button class="filter-chip" data-category="music">Музыка</button>
-                <button class="filter-chip" data-category="games">Игры</button>
-                <button class="filter-chip" data-category="news">Новости</button>
-                <button class="filter-chip" data-category="sport">Спорт</button>
-                <button class="filter-chip" data-category="movies">Фильмы</button>
+        <main class="main-content" id="mainContent">
+            <!-- Фильтры -->
+            <div class="filters-wrapper">
+                <div class="filters-bar" id="filtersBar">
+                    <button class="filter-chip active" data-category="all">Все</button>
+                    <button class="filter-chip" data-category="tech">Технологии</button>
+                    <button class="filter-chip" data-category="music">Музыка</button>
+                    <button class="filter-chip" data-category="games">Игры</button>
+                    <button class="filter-chip" data-category="news">Новости</button>
+                    <button class="filter-chip" data-category="sport">Спорт</button>
+                    <button class="filter-chip" data-category="movies">Фильмы</button>
+                    <button class="filter-chip" data-category="education">Обучение</button>
+                </div>
             </div>
 
+            <!-- Сортировка -->
             <div class="sort-section">
-                <span>Сортировать по:</span>
-                <button class="sort-btn active" data-sort="date">Новизне</button>
-                <button class="sort-btn" data-sort="views">Просмотрам</button>
-                <button class="sort-btn" data-sort="rating">Рейтингу</button>
+                <span class="sort-label">Сортировать:</span>
+                <div class="sort-buttons">
+                    <button class="sort-btn active" data-sort="date">Новизне</button>
+                    <button class="sort-btn" data-sort="views">Просмотрам</button>
+                    <button class="sort-btn" data-sort="rating">Рейтингу</button>
+                </div>
             </div>
 
+            <!-- Сетка видео -->
             <div class="videos-grid" id="videosGrid"></div>
-            <button class="load-more-btn" id="loadMoreBtn"><i class="fas fa-sync-alt"></i> Загрузить ещё</button>
+
+            <!-- Кнопка загрузить ещё -->
+            <div class="load-more-wrapper">
+                <button class="load-more-btn" id="loadMoreBtn">
+                    <i class="fas fa-sync-alt"></i>
+                    <span>Загрузить ещё</span>
+                </button>
+            </div>
         </main>
     </div>
 
@@ -65,90 +124,154 @@
         let videos = [];
         let currentFilter = 'all';
         let currentSort = 'date';
-        let displayedVideos = 6;
+        let displayedVideos = 8;
+        let currentUser = null;
+
+        // Тестовые видео с реальными YouTube-ссылками
+        const DEMO_VIDEOS = [
+            {
+                id: 1,
+                title: "iPhone 15 Pro Max — Полный обзор",
+                channel: "TechMaster",
+                channelIcon: "https://via.placeholder.com/24/ff0000",
+                views: "1.2M",
+                date: "2025-02-15",
+                duration: "12:34",
+                thumbnail: "https://img.youtube.com/vi/0pI5jvY4Tgs/maxresdefault.jpg",
+                category: "tech",
+                videoUrl: "https://www.youtube.com/embed/0pI5jvY4Tgs"
+            },
+            {
+                id: 2,
+                title: "CS2 — Гайд для новичков 2025",
+                channel: "GamePro",
+                channelIcon: "https://via.placeholder.com/24/00ff00",
+                views: "890K",
+                date: "2025-02-14",
+                duration: "25:10",
+                thumbnail: "https://img.youtube.com/vi/edYCtaNueQY/maxresdefault.jpg",
+                category: "games",
+                videoUrl: "https://www.youtube.com/embed/edYCtaNueQY"
+            },
+            {
+                id: 3,
+                title: "MORGENSHTERN — Новый трек (Премьера)",
+                channel: "Music Zone",
+                channelIcon: "https://via.placeholder.com/24/0000ff",
+                views: "3.4M",
+                date: "2025-02-10",
+                duration: "3:45",
+                thumbnail: "https://img.youtube.com/vi/q9sVKVSzI_M/maxresdefault.jpg",
+                category: "music",
+                videoUrl: "https://www.youtube.com/embed/q9sVKVSzI_M"
+            },
+            {
+                id: 4,
+                title: "Зенит — Спартак: Обзор матча",
+                channel: "Sport TV",
+                channelIcon: "https://via.placeholder.com/24/ffff00",
+                views: "2.1M",
+                date: "2025-02-08",
+                duration: "15:45",
+                thumbnail: "https://img.youtube.com/vi/RvEzj-ZvH-c/maxresdefault.jpg",
+                category: "sport",
+                videoUrl: "https://www.youtube.com/embed/RvEzj-ZvH-c"
+            },
+            {
+                id: 5,
+                title: "Дюна 2 — Обзор без спойлеров",
+                channel: "CinemaTime",
+                channelIcon: "https://via.placeholder.com/24/ff00ff",
+                views: "4.5M",
+                date: "2025-02-05",
+                duration: "22:18",
+                thumbnail: "https://img.youtube.com/vi/WAY7wj6Ee0c/maxresdefault.jpg",
+                category: "movies",
+                videoUrl: "https://www.youtube.com/embed/WAY7wj6Ee0c"
+            },
+            {
+                id: 6,
+                title: "Главные новости за неделю",
+                channel: "News24",
+                channelIcon: "https://via.placeholder.com/24/00ffff",
+                views: "1.1M",
+                date: "2025-02-12",
+                duration: "45:30",
+                thumbnail: "https://img.youtube.com/vi/5_PD_5zZ7nU/maxresdefault.jpg",
+                category: "news",
+                videoUrl: "https://www.youtube.com/embed/5_PD_5zZ7nU"
+            },
+            {
+                id: 7,
+                title: "Как выучить английский за месяц",
+                channel: "EduHub",
+                channelIcon: "https://via.placeholder.com/24/ff8800",
+                views: "780K",
+                date: "2025-02-03",
+                duration: "18:20",
+                thumbnail: "https://img.youtube.com/vi/6Lq3mPbvB2I/maxresdefault.jpg",
+                category: "education",
+                videoUrl: "https://www.youtube.com/embed/6Lq3mPbvB2I"
+            },
+            {
+                id: 8,
+                title: "Tesla Cybertruck — Тест-драйв",
+                channel: "AutoWorld",
+                channelIcon: "https://via.placeholder.com/24/ff4444",
+                views: "5.2M",
+                date: "2025-01-28",
+                duration: "32:15",
+                thumbnail: "https://img.youtube.com/vi/7tw0X9Dl7eQ/maxresdefault.jpg",
+                category: "tech",
+                videoUrl: "https://www.youtube.com/embed/7tw0X9Dl7eQ"
+            }
+        ];
 
         document.addEventListener('DOMContentLoaded', async () => {
+            await loadUser();
             await loadVideos();
+            setupEventListeners();
+            checkMenuState();
         });
+
+        async function loadUser() {
+            const token = localStorage.getItem('token');
+            if (token) {
+                try {
+                    const response = await fetch(`${API_URL}/api/user`, {
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    });
+                    if (response.ok) {
+                        currentUser = await response.json();
+                        updateUserAvatar();
+                    }
+                } catch (error) {
+                    console.error('Ошибка загрузки пользователя:', error);
+                }
+            }
+        }
+
+        function updateUserAvatar() {
+            const avatar = document.querySelector('.user-avatar img');
+            if (avatar && currentUser?.avatar) {
+                avatar.src = currentUser.avatar;
+            }
+        }
 
         async function loadVideos() {
             try {
                 const response = await fetch(`${API_URL}/api/videos`);
                 if (response.ok) {
                     videos = await response.json();
+                    if (videos.length === 0) videos = DEMO_VIDEOS;
                 } else {
-                    throw new Error('API не ответил');
+                    videos = DEMO_VIDEOS;
                 }
             } catch (error) {
                 console.warn('Использую тестовые видео');
-                videos = getDemoVideos();
+                videos = DEMO_VIDEOS;
             }
             displayVideos();
-        }
-
-        function getDemoVideos() {
-            return [
-                {
-                    id: 1,
-                    title: "iPhone 15 Pro Max — Обзор",
-                    channel: "TechMaster",
-                    views: "1.2M",
-                    date: "2025-02-15",
-                    duration: "12:34",
-                    thumbnail: "https://img.youtube.com/vi/0pI5jvY4Tgs/maxresdefault.jpg",
-                    category: "tech"
-                },
-                {
-                    id: 2,
-                    title: "CS2 — Гайд для новичков",
-                    channel: "GamePro",
-                    views: "890K",
-                    date: "2025-02-14",
-                    duration: "25:10",
-                    thumbnail: "https://img.youtube.com/vi/edYCtaNueQY/maxresdefault.jpg",
-                    category: "games"
-                },
-                {
-                    id: 3,
-                    title: "MORGENSHTERN — НОВЫЙ ТРЕК",
-                    channel: "Music Zone",
-                    views: "3.4M",
-                    date: "2025-02-10",
-                    duration: "3:45",
-                    thumbnail: "https://img.youtube.com/vi/q9sVKVSzI_M/maxresdefault.jpg",
-                    category: "music"
-                },
-                {
-                    id: 4,
-                    title: "Зенит — Спартак: Обзор",
-                    channel: "Sport TV",
-                    views: "2.1M",
-                    date: "2025-02-08",
-                    duration: "15:45",
-                    thumbnail: "https://img.youtube.com/vi/RvEzj-ZvH-c/maxresdefault.jpg",
-                    category: "sport"
-                },
-                {
-                    id: 5,
-                    title: "Дюна 2 — Обзор фильма",
-                    channel: "CinemaTime",
-                    views: "4.5M",
-                    date: "2025-02-05",
-                    duration: "22:18",
-                    thumbnail: "https://img.youtube.com/vi/WAY7wj6Ee0c/maxresdefault.jpg",
-                    category: "movies"
-                },
-                {
-                    id: 6,
-                    title: "Новости России и мира",
-                    channel: "News24",
-                    views: "1.1M",
-                    date: "2025-02-12",
-                    duration: "45:30",
-                    thumbnail: "https://img.youtube.com/vi/5_PD_5zZ7nU/maxresdefault.jpg",
-                    category: "news"
-                }
-            ];
         }
 
         function displayVideos() {
@@ -162,13 +285,19 @@
 
             filteredVideos.sort((a, b) => {
                 switch(currentSort) {
-                    case 'date': return new Date(b.date) - new Date(a.date);
-                    case 'views': return parseInt(b.views) - parseInt(a.views);
-                    default: return 0;
+                    case 'date':
+                        return new Date(b.date) - new Date(a.date);
+                    case 'views':
+                        const viewsA = parseInt(a.views) || 0;
+                        const viewsB = parseInt(b.views) || 0;
+                        return viewsB - viewsA;
+                    default:
+                        return 0;
                 }
             });
 
             const videosToShow = filteredVideos.slice(0, displayedVideos);
+            
             grid.innerHTML = videosToShow.map(video => `
                 <a href="video.html?id=${video.id}" class="video-card">
                     <div class="video-thumbnail">
@@ -176,41 +305,107 @@
                         <span class="video-duration">${video.duration}</span>
                     </div>
                     <div class="video-info">
-                        <h3 class="video-title">${video.title}</h3>
-                        <div class="video-channel">${video.channel}</div>
-                        <div class="video-stats">
-                            <span>${video.views} просмотров</span>
-                            <span>•</span>
-                            <span>${new Date(video.date).toLocaleDateString()}</span>
+                        <div class="video-channel-icon">
+                            <img src="${video.channelIcon || 'https://via.placeholder.com/36'}" alt="">
+                        </div>
+                        <div class="video-details">
+                            <h3 class="video-title">${video.title}</h3>
+                            <div class="video-channel">${video.channel}</div>
+                            <div class="video-stats">
+                                <span>${video.views} просмотров</span>
+                                <span class="separator">•</span>
+                                <span>${formatDate(video.date)}</span>
+                            </div>
                         </div>
                     </div>
                 </a>
             `).join('');
+
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+            if (loadMoreBtn) {
+                loadMoreBtn.style.display = displayedVideos >= filteredVideos.length ? 'none' : 'flex';
+            }
         }
 
-        document.querySelectorAll('.filter-chip').forEach(chip => {
-            chip.addEventListener('click', (e) => {
-                document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
-                e.target.classList.add('active');
-                currentFilter = e.target.dataset.category;
-                displayedVideos = 6;
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const now = new Date();
+            const diffTime = Math.abs(now - date);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            
+            if (diffDays === 0) return 'сегодня';
+            if (diffDays === 1) return 'вчера';
+            if (diffDays < 7) return `${diffDays} дня назад`;
+            return date.toLocaleDateString('ru-RU');
+        }
+
+        function setupEventListeners() {
+            // Фильтры
+            document.querySelectorAll('.filter-chip').forEach(chip => {
+                chip.addEventListener('click', (e) => {
+                    document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+                    e.target.classList.add('active');
+                    currentFilter = e.target.dataset.category;
+                    displayedVideos = 8;
+                    displayVideos();
+                });
+            });
+
+            // Сортировка
+            document.querySelectorAll('.sort-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
+                    e.target.classList.add('active');
+                    currentSort = e.target.dataset.sort;
+                    displayVideos();
+                });
+            });
+
+            // Кнопка загрузить ещё
+            document.getElementById('loadMoreBtn')?.addEventListener('click', () => {
+                displayedVideos += 4;
                 displayVideos();
             });
-        });
 
-        document.querySelectorAll('.sort-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
-                e.target.classList.add('active');
-                currentSort = e.target.dataset.sort;
-                displayVideos();
+            // Меню (бургер)
+            const menuToggle = document.getElementById('menuToggle');
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.getElementById('mainContent');
+
+            if (menuToggle && sidebar) {
+                menuToggle.addEventListener('click', () => {
+                    sidebar.classList.toggle('closed');
+                    if (window.innerWidth <= 1024) {
+                        sidebar.classList.toggle('mobile-open');
+                    }
+                });
+            }
+
+            // Поиск
+            document.getElementById('searchForm')?.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const query = document.getElementById('searchInput').value.trim();
+                if (query) {
+                    window.location.href = `search.html?q=${encodeURIComponent(query)}`;
+                }
             });
-        });
 
-        document.getElementById('loadMoreBtn')?.addEventListener('click', () => {
-            displayedVideos += 6;
-            displayVideos();
-        });
+            // Адаптация при ресайзе
+            window.addEventListener('resize', () => {
+                checkMenuState();
+            });
+        }
+
+        function checkMenuState() {
+            const sidebar = document.getElementById('sidebar');
+            if (!sidebar) return;
+            
+            if (window.innerWidth <= 1024) {
+                sidebar.classList.add('closed');
+            } else {
+                sidebar.classList.remove('closed', 'mobile-open');
+            }
+        }
     </script>
 </body>
 </html>
